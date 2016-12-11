@@ -4,6 +4,8 @@ import java.util.Iterator;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.document.PrimaryKey;
 import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.TableCollection;
 import com.amazonaws.services.dynamodbv2.model.ListTablesResult;
@@ -26,5 +28,14 @@ public class DynamoDbOperations {
 			Table table = iterator.next();
 			System.out.println(table.getTableName());
 		}
+	}
+	
+	public void printTableData(String tableName, int pkValue) {
+		Table table = dynamoDB.getTable(tableName);
+		PrimaryKey primaryKey = new PrimaryKey();
+		primaryKey.addComponent("id", pkValue);
+		Item item = table.getItem(primaryKey);
+		System.out.println(item.toString());
+
 	}
 }
