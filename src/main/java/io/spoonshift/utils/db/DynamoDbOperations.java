@@ -1,4 +1,4 @@
-package com.example.lambda;
+package io.spoonshift.utils.db;
 
 import java.util.Iterator;
 
@@ -37,5 +37,15 @@ public class DynamoDbOperations {
 		Item item = table.getItem(primaryKey);
 		System.out.println(item.toString());
 
+	}
+	
+	public void createItem(String tableName, int pkValue) {
+		Table table = dynamoDB.getTable(tableName);
+		
+		Item item = new Item().withPrimaryKey("id", pkValue)
+				.with("name", "Kasim Doctor")
+				.with("isActive", false);
+		
+		table.putItem(item);
 	}
 }

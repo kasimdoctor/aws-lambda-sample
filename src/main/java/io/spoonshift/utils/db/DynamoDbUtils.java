@@ -1,4 +1,4 @@
-package com.example.lambda;
+package io.spoonshift.utils.db;
 
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
